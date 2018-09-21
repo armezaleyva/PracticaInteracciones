@@ -20,11 +20,17 @@ namespace PracticaInteracciones {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
-            txtCuenta.Text = "Texto Modificado";
+            txtCuenta.Text = "0";
         }
 
         private void sldPorcentajePropina_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
-            lblPorcentajePropina.Text = sldPorcentajePropina.Value.ToString();
+            lblPorcentajePropina.Text = ((int)sldPorcentajePropina.Value).ToString() + "%";
+
+            float cuenta = float.Parse(txtCuenta.Text);
+            float montoPropina = cuenta * ((int)sldPorcentajePropina.Value / 100f);
+            float totalAPagar = cuenta + montoPropina;
+
+            lblTotalConPropina.Text = "$" + totalAPagar.ToString();
         }
     }
 }
